@@ -3,6 +3,8 @@
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Available_-brightgreen)](https://jimmyu2foru18.github.io/PookiesPlaytime/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-blue)](https://github.com/Jimmyu2foru18/PookiesPlaytime/deployments)
 
+**Last Deployment**: December 26, 2025 - Force redeploy
+
 Welcome to **Pookie's Playtime**, a Mario-style platformer featuring **Pookie the Zen Fox**. Navigate through beautiful Japanese-inspired landscapes, collect magical "Dookies," and master the path of the Sachi.
 
 ## Character Profile: Pookie
