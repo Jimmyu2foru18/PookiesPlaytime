@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: './', // This makes it work on GitHub Pages and locally
+       base: '/PookiesPlaytime/', // This makes it work on GitHub Pages and locally
       server: {
         port: 3000,
         host: '0.0.0.0',
