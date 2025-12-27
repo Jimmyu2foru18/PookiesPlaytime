@@ -46,7 +46,7 @@ interface Fireball {
 const GameCanvas: React.FC<GameCanvasProps> = ({ gameState, setGameState, setScore, setHealth, currentLevel }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const activeKeys = useRef<Set<string>>(new Set());
-  const [dims, setDims] = useState({ w: window.innerWidth, h: window.innerHeight });
+  const [dims, setDims] = useState({ w: 1200, h: 800 }); // Default safe dimensions
   const [images, setImages] = useState<Record<string, HTMLImageElement>>({});
   
   const playerRef = useRef({
@@ -99,13 +99,36 @@ const GameCanvas: React.FC<GameCanvasProps> = ({ gameState, setGameState, setSco
     entries.forEach(([key, path]) => {
       const img = new Image();
       img.src = path;
-      img.onload = () => { loaded[key] = img; count++; if (count === entries.length) setImages(loaded); };
-      img.onerror = () => { count++; if (count === entries.length) setImages(loaded); };
+      img.onload = () => { 
+        loaded[key] = img; 
+        count++; 
+        if (count === entries.length) {
+          console.log('All images loaded successfully');
+          setImages(loaded);
+        }
+      };
+      img.onerror = () => { 
+        console.error(`Failed to load image: ${key} from ${path}`);
+        count++; 
+        if (count === entries.length) {
+          console.log('Image loading completed (with some failures)');
+          setImages(loaded);
+        }
+      };
     });
   }, []);
 
   useEffect(() => {
-    const handleResize = () => setDims({ w: window.innerWidth, h: window.innerHeight });
+    // Set proper dimensions after component mounts
+    const updateDimensions = () => {
+      setDims({ 
+        w: Math.max(800, window.innerWidth || 1200), 
+        h: Math.max(600, window.innerHeight || 800) 
+      });
+    };
+    updateDimensions();
+    
+    const handleResize = () => updateDimensions();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -412,7 +435,11 @@ const GameCanvas: React.FC<GameCanvasProps> = ({ gameState, setGameState, setSco
 
     const draw = () => {
       const canvas = canvasRef.current, ctx = canvas?.getContext('2d'); 
-      if (!ctx || !canvas) return;
+      if (!ctx || !canvas) {
+        console.error('Canvas or context not available');
+        return;
+      }
+      console.log('Drawing canvas with dimensions:', dims.w, 'x', dims.h);
       const camX = cameraRef.current.x, p = playerRef.current; 
       ctx.clearRect(0, 0, dims.w, dims.h);
 
