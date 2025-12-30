@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import GameCanvas from './components/GameCanvas';
 import { GameState, HighScore } from './types';
@@ -99,49 +98,51 @@ const App: React.FC = () => {
         )}
       </div>
 
-{/* Screen Overlays */}
-{gameState === GameState.MENU && (
-  <div 
-    className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-cover bg-center text-white p-6"
-    style={{ backgroundImage: `url('${ASSET_PATHS.BACKGROUNDS.MAIN_MENU}')` }}
-  >
-    <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] z-0"></div>
-    <div className="max-w-3xl text-center relative z-10">
-      <div className="mb-4 inline-block px-4 py-1 bg-[#FFB7C5] text-black font-black text-sm uppercase tracking-widest rounded-full animate-bounce">
-        Now with Power-ups!
-      </div>
-      <h1 className="text-6xl md:text-9xl font-black mb-2 text-[#FFB7C5] drop-shadow-[0_8px_0_rgba(255,255,255,0.1)] tracking-tighter uppercase italic">
-        POOKIE'S PLAYTIME!
-      </h1>
-      <p className="text-xl md:text-2xl mb-12 text-[#90EE90] font-bold uppercase tracking-[0.3em]">
-        ~ The Way of the Sachi ~
-      </p>
-      <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
-        <button onClick={startGame} className="menu-btn bg-white text-black text-2xl font-black p-5 rounded-xl hover:bg-[#FFB7C5] transition-all">START GAME 🦊</button>
-        <button onClick={openInstructions} className="menu-btn bg-white/10 text-white text-xl font-bold p-4 rounded-xl hover:bg-white/20 transition-all">INSTRUCTIONS</button>
-        <button onClick={() => setGameState(GameState.LEADERBOARD)} className="menu-btn bg-white/10 text-white text-xl font-bold p-4 rounded-xl hover:bg-white/20 transition-all">LEADERBOARD</button>
-      </div>
-    </div>
-
-    {/* Footer */}
-    <div className="absolute bottom-4 w-full flex justify-between px-6 text-white text-sm z-10">
-      <div>@th3viousgameus</div>
-      <div className="text-right">
-        <div>@sachimizora</div>
-        <a 
-          href="https://sachimizora.carrd.co" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="text-blue-400 underline text-xs"
+      {/* Screen Overlays */}
+      {gameState === GameState.MENU && (
+        <div 
+          className="absolute inset-0 z-50 bg-cover bg-center text-white p-6"
+          style={{ backgroundImage: `url('${ASSET_PATHS.BACKGROUNDS.MAIN_MENU}')` }}
         >
-          https://sachimizora.carrd.co
-        </a>
-      </div>
-    </div>
-  </div>
-)}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] z-0"></div>
 
+          {/* Centered Menu Content */}
+          <div className="relative z-10 flex flex-col items-center justify-center h-full">
+            <div className="mb-4 inline-block px-4 py-1 bg-[#FFB7C5] text-black font-black text-sm uppercase tracking-widest rounded-full animate-bounce">
+              Now with Power-ups!
+            </div>
+            <h1 className="text-6xl md:text-9xl font-black mb-2 text-[#FFB7C5] drop-shadow-[0_8px_0_rgba(255,255,255,0.1)] tracking-tighter uppercase italic">
+              POOKIE'S PLAYTIME!
+            </h1>
+            <p className="text-xl md:text-2xl mb-12 text-[#90EE90] font-bold uppercase tracking-[0.3em]">
+              ~ The Way of the Sachi ~
+            </p>
+            <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
+              <button onClick={startGame} className="menu-btn bg-white text-black text-2xl font-black p-5 rounded-xl hover:bg-[#FFB7C5] transition-all">START GAME 🦊</button>
+              <button onClick={openInstructions} className="menu-btn bg-white/10 text-white text-xl font-bold p-4 rounded-xl hover:bg-white/20 transition-all">INSTRUCTIONS</button>
+              <button onClick={() => setGameState(GameState.LEADERBOARD)} className="menu-btn bg-white/10 text-white text-xl font-bold p-4 rounded-xl hover:bg-white/20 transition-all">LEADERBOARD</button>
+            </div>
+          </div>
 
+          {/* Footer */}
+          <div className="absolute bottom-4 left-0 w-full flex justify-between px-6 text-white text-sm z-10">
+            <div>@th3viousgameus</div>
+            <div className="text-right">
+              <div>@sachimizora</div>
+              <a 
+                href="https://sachimizora.carrd.co" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-400 underline text-xs"
+              >
+                https://sachimizora.carrd.co
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Paused Overlay */}
       {gameState === GameState.PAUSED && (
         <div className="absolute inset-0 z-[60] flex flex-col items-center justify-center bg-black/70 backdrop-blur-lg">
            <h2 className="text-8xl font-black text-[#90EE90] mb-12 italic tracking-tighter">PAUSED</h2>
@@ -153,6 +154,7 @@ const App: React.FC = () => {
         </div>
       )}
 
+      {/* Instructions Overlay */}
       {gameState === GameState.INSTRUCTIONS && (
         <div 
           className="absolute inset-0 z-[70] flex flex-col items-center justify-center bg-cover bg-center text-white p-10"
@@ -185,6 +187,7 @@ const App: React.FC = () => {
         </div>
       )}
 
+      {/* Game Over Overlay */}
       {gameState === GameState.GAME_OVER && (
         <div 
           className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-cover bg-center text-white p-6"
@@ -210,6 +213,7 @@ const App: React.FC = () => {
         </div>
       )}
 
+      {/* Victory Overlay */}
       {gameState === GameState.VICTORY && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#90EE90] text-black p-12 text-center">
           <div className="text-9xl mb-8 animate-bounce">🎌</div>
@@ -220,6 +224,7 @@ const App: React.FC = () => {
         </div>
       )}
 
+      {/* Leaderboard Overlay */}
       {gameState === GameState.LEADERBOARD && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#1A1A1A] text-white p-12">
           <h1 className="text-7xl font-black mb-12 text-[#FFB7C5] italic underline underline-offset-8">GARDEN LEGENDS</h1>
@@ -237,6 +242,7 @@ const App: React.FC = () => {
         </div>
       )}
 
+      {/* Level Complete Overlay */}
       {gameState === GameState.LEVEL_COMPLETE && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#FFB7C5] text-black p-6">
           <h1 className="text-8xl md:text-9xl font-black mb-12 italic tracking-tighter text-center">PATH {level} CLEARED!</h1>
