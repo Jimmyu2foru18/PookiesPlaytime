@@ -71,19 +71,6 @@ assets/
 
 ---
 
-## Deployment
-
-### GitHub Pages
-
-The project is automatically deployed via GitHub Actions.  
-
-**Live Demo**: [Play Pookie's Playtime Now](https://jimmyu2foru18.github.io/PookiesPlaytime/)
-
-### Manual Deployment
-
-1. Build the project: `npm run build`  
-2. Deploy the `dist` folder to your hosting service  
-
 ### Development
 
 ~~~bash
