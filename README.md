@@ -1,7 +1,5 @@
 # Pookie's Playtime
-
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Available_-brightgreen)](https://jimmyu2foru18.github.io/PookiesPlaytime/)  
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-blue)](https://github.com/Jimmyu2foru18/PookiesPlaytime/deployments)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Available_-brightgreen)](https://jimmyu2foru18.github.io/PookiesPlaytime/) [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-blue)](https://github.com/Jimmyu2foru18/PookiesPlaytime/deployments)
 
 ---
 
